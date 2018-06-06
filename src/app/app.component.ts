@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserServiceService } from '../../services/user-service.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'Anor Londo';
+  testPromenljiva = 'Test Promenljiva';
+
+  callGet(){
+    this.userService
+  }
 }
