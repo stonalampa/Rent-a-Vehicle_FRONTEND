@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
+
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { MethodResult } from '../models/methodResult.model';
+import { HttpClient, HttpUserEvent } from '@angular/common/http';
+
+import { Observable, of } from 'rxjs';
+import { UserModel } from 'src/model/userModel.model';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +28,10 @@ export class UserServiceService {
   }
 
   getMethodDemo(): Observable<any> {
-    return this.httpClient.get('http://localhost:51680/GetUser/ReturnUser').map(this.parseData).catch(this.handleError);
+    return this.httpClient.get('http://localhost:51680/Read/ReadUser');
   }
 
+  postMethodDemo(user):Observable<any>{
+    return this.httpClient.post('http://localhost:51680/Write/WriteUser', user);
+  }
 }
