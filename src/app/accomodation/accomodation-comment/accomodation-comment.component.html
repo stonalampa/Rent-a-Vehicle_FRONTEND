@@ -1,0 +1,29 @@
+<div class="container">
+  <h2 md-dialog-title>{{commentAccomodation.Name}}</h2>
+    <div *ngFor= "let comment of commentAccomodation.Comments" >
+  <md-card class="acc-dialog">
+    <md-card-header>
+    </md-card-header>
+    <md-card-content>
+      <md-list>
+       <md-list-item> Text: {{comment.Text}} </md-list-item>
+       <md-list-item> Grade: {{comment.Grade}}</md-list-item>
+    </md-list>
+    
+    </md-card-content>
+    <md-card-actions>
+       <button *ngIf="managerRole==true"  md-raised-button color="warn" (click) = "deleteComment(comment)">Delete</button>
+    </md-card-actions>
+  </md-card>
+    </div>
+    <div class="container">
+    <md-card class="acc-dialog">
+      <md-card-header>
+      <md-card-title>Leave comment : </md-card-title>
+      </md-card-header>
+      <md-card-content>
+      <app-comment-add [AccId]="commentAccomodation.Id" (notifyParent)="getNotification($event)"> </app-comment-add>
+      </md-card-content>
+    </md-card>
+    </div>
+  </div>

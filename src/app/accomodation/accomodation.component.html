@@ -1,0 +1,101 @@
+<pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+
+<div *ngIf="userUndefined==true || appUser==true">
+    <div class="example-card"  *ngFor="let acc of accommodations | paginate: { itemsPerPage: 2, currentPage: p}"  >
+      <div *ngIf="acc.Approved==true">
+        <md-card class="example-card">
+          <md-card-header>
+            <div md-card-avatar class="example-header-image"></div>
+            <md-card-title>{{acc.Name}} </md-card-title>
+            <md-card-subtitle><a class='kinda-link' (click)="locationClick(acc)">Location: {{acc.Address}} </a> 
+            </md-card-subtitle>
+            <md-card-subtitle>
+            Average grade : {{acc.AverageGrade}}
+            </md-card-subtitle>
+          </md-card-header>
+          <img md-card-image src={{acc.ImageURL}} (click) = "detailsDialog(acc)"/>
+          <md-card-content>
+            <p>
+            Opis: {{acc.Description}}
+            </p>
+          </md-card-content>
+          <md-card-actions>
+            <button md-raised-button color="primary" (click) = "commentDialog(acc)">Comments</button>
+          </md-card-actions>
+        </md-card>
+      </div>
+    </div>
+</div>
+
+<div *ngIf="managerRole==true">
+<div  class="example-card"  *ngFor="let acc of accommodations | paginate: { itemsPerPage: 2, currentPage: p}"  >
+<md-card *ngIf="acc.AppUser_Id==userManager.Id" class="example-card">
+  <md-card-header>
+    <div md-card-avatar class="example-header-image"></div>
+    <md-card-title>{{acc.Name}} </md-card-title>
+    <md-card-subtitle><a class='kinda-link' (click)="locationClick(acc)">Location: {{acc.Address}} </a> 
+    </md-card-subtitle>
+    <md-card-subtitle>
+     Average grade : {{acc.AverageGrade}}
+    </md-card-subtitle>
+  </md-card-header>
+  <img md-card-image src={{acc.ImageURL}} (click) = "detailsDialog(acc)"/>
+  <md-card-content>
+    <p>
+    Opis: {{acc.Description}}
+    </p>
+  </md-card-content>
+  <md-card-actions>
+    <button  md-raised-button color="primary" (click) = "editAccNewDialog(acc)">Edit</button>
+    <button  md-raised-button color="warn" (click) = "delete(acc)">Delete</button>
+    <button md-raised-button color="primary" (click) = "commentDialog(acc)">Comments</button>
+    <button md-raised-button color="primary" (click) = "addRoomDialog(acc)">Add room</button>
+  </md-card-actions>
+</md-card>
+</div>
+</div>
+
+<div *ngIf="adminRole==true">
+<div  class="example-card"  *ngFor="let acc of accommodations | paginate: { itemsPerPage: 2, currentPage: p}"  >
+<md-card class="example-card">
+  <md-card-header>
+    <div md-card-avatar class="example-header-image"></div>
+    <md-card-title>{{acc.Name}} </md-card-title>
+    <md-card-subtitle><a class='kinda-link' (click)="locationClick(acc)">Location: {{acc.Address}} </a> 
+    </md-card-subtitle>
+    <md-card-subtitle>
+     Average grade : {{acc.AverageGrade}}
+    </md-card-subtitle>
+  </md-card-header>
+  <img md-card-image src={{acc.ImageURL}} (click) = "detailsDialog(acc)"/>
+  <md-card-content>
+    <p>
+    Opis: {{acc.Description}}
+    </p>
+  </md-card-content>
+  <md-card-actions>
+    <button  md-raised-button color="primary" (click) = "editAccNewDialog(acc)">Edit</button>
+    <button  md-raised-button color="warn" (click) = "delete(acc)">Delete</button>
+    <button md-raised-button color="primary" (click) = "commentDialog(acc)">Comments</button>
+  </md-card-actions>
+</md-card>
+</div>
+</div>
+
+<pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+
+<span *ngIf="managerRole==true && managerBanned==false " class="done">
+    <button md-fab (click) = "openAccNewDialog()" >
+    <md-icon>New</md-icon>
+    </button>
+       
+</span>
+
+<span class="search">
+    <button md-fab (click) = "openSearchDialog()" >
+    <md-icon>
+        <div md-card-avatar class="searchImage"></div>
+     </md-icon>
+    </button>
+       
+</span>

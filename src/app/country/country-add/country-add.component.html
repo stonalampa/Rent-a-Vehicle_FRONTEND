@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Add Country</h1>
+  <form type="form" #f="ngForm" (ngSubmit)="f.form.valid && saveCountry(f.value,f)"  novalidate>
+      <div>
+          <label for="name">Name:</label>
+          <input type="text" name="name" [(ngModel)]="nCountry.name" #name="ngModel" required />
+          <div *ngIf="f.submitted && !name.valid">Name is required</div>
+      </div>
+      <div>
+          <label for="code">Code:</label>
+          <input type="number" min="1" max="10000" name="code" [(ngModel)]="nCountry.code" #code="ngModel" required />
+          <div *ngIf="f.submitted && !code.valid">Code is required</div>
+      </div>
+        <button type="submit">Save</button>
+  </form>
+</div>
+

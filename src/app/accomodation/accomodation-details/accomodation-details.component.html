@@ -1,0 +1,22 @@
+<div class="container">
+  <h2 md-dialog-title>{{detAccomodation.Name}}</h2>
+    <div *ngFor= "let room of detAccomodation.Rooms">
+      <md-card class="acc-dialog">
+        <md-card-header>
+          <md-card-title>Room number: {{room.RoomNumber}}</md-card-title>
+        </md-card-header>
+        <md-card-content>
+          <md-list>
+          <md-list-item> Description: {{room.Description}} </md-list-item>
+          <md-list-item> Bed count: {{room.BedCount}}</md-list-item>
+          <md-list-item> Price per night : {{room.PricePerNight}}  </md-list-item>
+        </md-list>
+          <app-room-reservation-add  [roomForCheckReserv] = "room"  (notifyParent)="getNotification($event)"></app-room-reservation-add>
+        </md-card-content>
+        <md-card-actions>
+          <button *ngIf="managerRole==true" md-raised-button color="primary" (click)="editRoom(room)">Edit Room</button>
+          <button *ngIf="managerRole==true" md-raised-button color="warn" (click)="deleteRoom(room)">Delete Room</button>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </div>
