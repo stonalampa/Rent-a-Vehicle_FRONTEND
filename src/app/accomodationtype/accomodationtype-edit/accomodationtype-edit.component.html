@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Edit AccomodationType</h1>
+  <form type="form" #f="ngForm" (ngSubmit)="f.form.valid && editAccomodationType(f.value,f)"  novalidate>
+      <div>
+          <input type="hidden" name="Id" [(ngModel)]="eAccomodationType.Id" #name="ngModel"/>
+      </div>
+      <div>
+          <label for="name">Name:</label>
+          <input type="text" name="Name" [(ngModel)]="eAccomodationType.Name" #name="ngModel" required />
+          <div *ngIf="f.submitted && !name.valid">Name is required</div>
+      </div>
+      <button type="submit">Edit</button>
+     </form>
+</div>

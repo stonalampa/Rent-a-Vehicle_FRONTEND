@@ -1,0 +1,76 @@
+<div class="addDialog">
+  <h1 md-dialog-title>Edit Accomodation</h1>
+  <form type="form" #f="ngForm" (ngSubmit)="f.form.valid && editAccommodation(f.value,f)"  novalidate>
+      <div>
+          <input type="hidden" name="Id" [(ngModel)]="eAccommodation.Id" #name="ngModel"/>
+      </div>
+      <div>
+          <md-input-container>
+          <input mdInput type="text" placeholder="Name" name="Name" [(ngModel)]="eAccommodation.Name" #Name="ngModel" required />
+          </md-input-container>
+          <div *ngIf="f.submitted && !Name.valid">Name is required</div> 
+      </div>
+      <div>
+          <md-input-container>
+          <input  mdInput placeholder="Description" type="text" name="Description" [(ngModel)]="eAccommodation.Description" #Description="ngModel" required />
+          </md-input-container>
+          <div *ngIf="f.submitted && !Description.valid">Description is required</div>
+      </div>
+      <div>
+         <md-input-container>
+          <input mdInput type="text" placeholder="Adress" name="Address" [(ngModel)]="eAccommodation.Address" #Address="ngModel" required />
+         </md-input-container>
+          <div *ngIf="f.submitted && !Address.valid">Address is required</div>
+      </div>
+      <div>
+         <md-input-container>
+          <input mdInput type="text" [readonly] = "true" placeholder="Latitude" name="Latitude" [(ngModel)]="eAccommodation.Latitude" #Latitude="ngModel" required />
+         </md-input-container>
+          <div *ngIf="f.submitted && !Latitude.valid">Latitude is required</div>
+      </div>
+      <div>
+         <md-input-container>
+          <input mdInput type="text" [readonly] = "true" placeholder="Longitude" name="Longitude" [(ngModel)]="eAccommodation.Longitude" #Longitude="ngModel" required />
+         </md-input-container>
+          <div *ngIf="f.submitted && !Longitude.valid">Longitude is required</div>
+      </div>
+      <div>
+            <button type="button"  md-raised-button color="primary" (click)="openMapChangeLocation()">Change Location</button>
+      </div>
+      <div>
+         <md-input-container>
+          <input mdInput type="text" [readonly] = "true" placeholder="ImageURL" name="ImageURL" [(ngModel)]="eAccommodation.ImageURL" #ImageURL="ngModel" required />
+         </md-input-container>
+          <div *ngIf="f.submitted && !ImageURL.valid">ImageURL is required</div>
+      </div>
+      <div>
+            <button type="button" style="margin: 15px;" md-raised-button color="primary" (click)="openChangeImageDialog()">Change Image</button>
+      </div>
+      <div>
+        <md-select style="margin: 15px;" [(ngModel)]="eAccommodation.AccommodationType_Id" name="AccommodationType_Id"  #AccommodationTypeId="ngModel" 
+        placeholder="AccomodationType" required>
+            <md-option *ngFor="let accommodationType of accommodationTypes" [value]="accommodationType.Id">
+                {{accommodationType.Name}}
+            </md-option>
+        </md-select>
+        <div *ngIf="f.submitted && !AccommodationTypeId.valid">Accommodation Type is required</div>
+      </div>
+
+      <div>
+        <md-select style="margin: 15px;"  [(ngModel)]="eAccommodation.Place_Id" name="Place_Id" #placeId="ngModel" placeholder="Place" required>
+            <md-option *ngFor="let place of places" [value]="place.Id">
+                {{place.Name}}
+            </md-option>
+        </md-select>
+        <div *ngIf="f.submitted && !placeId.valid">Place is required</div>
+      </div>
+
+      <div *ngIf="adminRole==true">
+        <section class="example-section">
+            <md-checkbox class="example-margin" [(ngModel)]="eAccommodation.Approved" name ="Approved">Approved</md-checkbox>
+        </section>
+      </div>
+        <button md-raised-button color="primary" type="submit">Save</button>
+  </form>
+</div>
+

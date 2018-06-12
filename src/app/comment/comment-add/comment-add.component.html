@@ -1,0 +1,22 @@
+<div class="container">
+  <form type="form" #f="ngForm" (ngSubmit)="f.form.valid && saveComment(f.value,f,AccId)"  novalidate>
+       <div>
+          <input type="hidden" name="Id" [(ngModel)]="AccId" #Id="ngModel"/>
+      </div>
+      <div>
+         <md-input-container>
+          <input mdInput type="text" placeholder="Text" name="Text" [(ngModel)]="nComment.Text" #Text="ngModel" required />
+         </md-input-container>
+          <div *ngIf="f.submitted && !Text.valid">Text is required</div>
+      </div>
+       <div>
+        <md-select  [(ngModel)]="nComment.Grade" name="Grade" #placeId="ngModel" placeholder="Grade" required>
+            <md-option *ngFor="let num of numbers" [value]="num">
+                {{num}}
+            </md-option>
+        </md-select>
+      </div>
+     
+        <button *ngIf="appUserRole==true" md-raised-button color="primary" type="submit">Post</button>
+  </form>
+</div>

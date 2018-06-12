@@ -1,0 +1,18 @@
+<div class="container">
+  <h1 md-dialog-title>Login</h1>
+  <form type="form" #f="ngForm" (ngSubmit)="f.form.valid && login(f.value,f)"  novalidate>
+      <div>
+          <md-input-container>
+          <input mdInput placeholder="Username" type="text" name="username" ngModel  required />
+          </md-input-container>
+      </div>
+      <div>
+          <md-input-container>
+          <input mdInput placeholder="Password" type="password" name="password" ngModel  required />
+          </md-input-container>
+      </div>
+      
+        <button md-raised-button color="primary" type="submit">Login</button>
+  </form>
+</div>
+
