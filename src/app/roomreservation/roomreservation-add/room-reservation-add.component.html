@@ -1,0 +1,31 @@
+<div *ngIf="userRole==true || managerRole==true" class="container">
+  <form type="form" #f="ngForm" (ngSubmit)="f.form.valid && saveRoomReservation(f.value,f,roomForCheckReserv)"  novalidate>
+     
+      <div>
+          <input type="hidden" name="roomForCheckReserv" [(ngModel)]="roomForCheckReserv" #room="ngModel"/>
+      </div>
+      <div>
+          <label for="startDate">Start date:</label>
+          <input ngui-datetime-picker date-only="false" #StartDate = "ngModel"
+           [(ngModel)]='nRoomReservation.StartDate' name="StartDate" required/>
+           <div *ngIf="f.submitted && !StartDate.valid">StartDate is required</div>
+      </div>
+      <div>
+          <label for="endDate">End date:</label>
+      <input ngui-datetime-picker  date-only="false" #EndDate = "ngModel" 
+      [(ngModel)]='nRoomReservation.EndDate' name="EndDate" required/>
+      <div *ngIf="f.submitted && !EndDate.valid">EndDate is required</div>
+      </div>
+        <button md-raised-button color="primary" type="submit">Reserve</button>
+  </form>
+</div>
+
+<!--  <div>
+        <label for="room">Room:</label>
+        <select  [(ngModel)]="nRoomReservation.Room_Id" name="Room_Id" #Room="ngModel" required>
+            <option *ngFor="let room of rooms" [value]="room.Id">
+                {{room.RoomNumber}}
+            </option>
+        </select>
+        <div *ngIf="f.submitted && !Region.valid">Region is required</div>
+      </div> -->

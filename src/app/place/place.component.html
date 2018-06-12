@@ -1,0 +1,22 @@
+<table border="1">
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Region</th>
+        <th *ngIf="adminRole==true">Edit</th>
+        <th *ngIf="adminRole==true">Delete</th>
+    </thead>
+    <tr *ngFor="let place of places">
+        <td>{{place.Id}}</td>
+        <td>{{place.Name}}</td>
+        <td>{{place.Region.Name}}</td>
+        <td *ngIf="adminRole==true"><button (click)="editClick(place)">Edit</button></td>
+        <td *ngIf="adminRole==true"><button (click)="delete(place)">Delete</button></td>
+    </tr>
+    
+</table>
+<a *ngIf="adminRole==true" [routerLink]="['/place-add']">Add Place</a>
+<router-outlet></router-outlet>
+<div *ngIf="editFlag==true">
+    <app-place-edit [ePlace] = "place" (notifyParent)="getNotification($event)"></app-place-edit>
+</div>

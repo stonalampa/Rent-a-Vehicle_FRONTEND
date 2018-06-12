@@ -1,0 +1,47 @@
+<div class="addDialog">
+  <h1 md-dialog-title>Search for Accommodation</h1>
+  <form type="form" #f="ngForm" (ngSubmit)="f.form.valid && applyFilter(f.value,f)"  novalidate>
+      <div>
+        <section class="example-section">
+             <md-checkbox class="example-margin" [(ngModel)]="checkedPlace" name= "Place_cb"></md-checkbox>
+             <md-input-container>
+              <input mdInput type="text" [readonly]="!checkedPlace" [(ngModel)]="nSearch.Place" name="Place" placeholder="Place"/>
+            </md-input-container>
+        </section>
+      </div>
+       <div> 
+       <section class="example-section">
+             <md-checkbox class="example-margin" [(ngModel)]="checkedBedCount" name= "BedCount_cb"></md-checkbox>
+             <md-input-container>
+              <input mdInput type="number" [readonly]="!checkedBedCount" [(ngModel)]="nSearch.BedCount" name="BedCount" placeholder="BedCount"/>
+            </md-input-container>
+        </section>
+       </div>
+       <div>
+       <section class="example-section">
+             <md-checkbox class="example-margin" [(ngModel)]="checkedMinPrice" name= "MinPrice_cb"></md-checkbox>
+             <md-input-container>
+              <input mdInput type="number" [readonly]="!checkedMinPrice" [(ngModel)]="nSearch.MinPrice" name="MinPrice" placeholder="MinPrice"/>
+            </md-input-container>
+        </section>
+       </div>
+       <div>
+        <section class="example-section">
+             <md-checkbox class="example-margin" [(ngModel)]="checkedMaxPrice" name= "MaxPrice_cb"></md-checkbox>
+             <md-input-container>
+              <input mdInput type="number" [readonly]="!checkedMaxPrice" [(ngModel)]="nSearch.MaxPrice" name="MaxPrice" placeholder="MaxPrice"/>
+            </md-input-container>
+        </section>
+      </div>
+        <div>
+        <section class="example-section">
+             <md-checkbox class="example-margin" [(ngModel)]="checkedMinRate" name= "MinRate_cb"></md-checkbox>
+             <md-input-container>
+              <input mdInput type="number" [readonly]="!checkedMinRate" [(ngModel)]="nSearch.MinRate" name="MinRate" placeholder="MinRate"/>
+            </md-input-container>
+        </section>
+        </div>
+        <button md-raised-button color="primary" type="submit">Applay filter</button>
+  </form>
+</div>
+

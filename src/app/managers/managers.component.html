@@ -1,0 +1,16 @@
+<table border="1">
+    <thead>
+        <th>Username</th>
+        <th>Block</th>
+    </thead>
+    <tr *ngFor="let manager of managers">
+        <td>{{manager.Username}}</td>
+        <td>
+          <div>
+        <section class="example-section">
+      <md-checkbox class="example-margin" [(ngModel)]="manager.isBanned" (change)="saveManager(manager)" name ="Banned"></md-checkbox>
+    </section>
+      </div></td>
+    </tr>
+    
+</table>

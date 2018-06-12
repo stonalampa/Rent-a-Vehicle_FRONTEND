@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Edit Room Reservation</h1>
+  <form type="form" #f="ngForm" (ngSubmit)="f.form.valid && editRoomReservation(f.value,f)"  novalidate>
+      <div>
+          <input type="hidden" name="Id" [(ngModel)]="eRoomReservation.Id" #Id="ngModel"/>
+      </div>
+      <div>
+          <label for="startDate">Start date:</label>
+          <input ngui-datetime-picker date-only="true" #StartDate = "ngModel"
+           [(ngModel)]='eRoomReservation.StartDate' name="StartDate" required/>
+           <div *ngIf="f.submitted && !StartDate.valid">StartDate is required</div>
+      </div>
+      <div>
+          <label for="endDate">End date:</label>
+      <input ngui-datetime-picker  date-only="true" #EndDate = "ngModel" 
+      [(ngModel)]='eRoomReservation.EndDate' name="EndDate" required/>
+      <div *ngIf="f.submitted && !EndDate.valid">EndDate is required</div>
+       <div>
+        <label for="room">Room:</label>
+        <select  [(ngModel)]="eRoomReservation.Room_Id" name="Room_Id" #Room="ngModel" required>
+            <option *ngFor="let room of rooms" [value]="room.Id">
+                {{room.RoomNumber}}
+            </option>
+        </select>
+        <div *ngIf="f.submitted && !Region.valid">Region is required</div>
+      </div>
+
+      </div>
+        <button type="submit">Save</button>
+  </form>
+</div>
+

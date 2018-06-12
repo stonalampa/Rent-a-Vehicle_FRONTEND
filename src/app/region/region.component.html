@@ -1,0 +1,22 @@
+<table border="1">
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th *ngIf="adminRole==true">Edit</th>
+        <th *ngIf="adminRole==true">Delete</th>
+    </thead>
+    <tr *ngFor="let region of regions">
+        <td>{{region.Id}}</td>
+        <td>{{region.Name}}</td>
+        <td>{{region.Country.Name}}</td>
+        <td *ngIf="adminRole==true"><button (click)="editClick(region)">Edit</button></td>
+        <td *ngIf="adminRole==true"><button (click)="delete(region)">Delete</button></td>
+    </tr>
+    
+</table>
+<a *ngIf="adminRole==true" [routerLink]="['/region-add']">Add Region</a>
+<router-outlet></router-outlet>
+<div *ngIf="editFlag==true">
+    <app-region-edit [eRegion] = "region" (notifyParent)="getNotification($event)"></app-region-edit>
+</div>

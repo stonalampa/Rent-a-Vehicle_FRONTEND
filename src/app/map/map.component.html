@@ -1,0 +1,29 @@
+<!-- Kreiramo mapu -->
+  <agm-map [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" [zoom]="18" (mapClick)="onClick($event)">
+   
+    <!-- Postavljamo markere -->
+    <agm-marker *ngIf="watching==true" [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" [title]="mapInfo.title"
+    [label]="mapInfo.label">
+      <agm-info-window [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" >
+
+       
+        <span style="font-size: 16px;font-family:'Times New Roman'">{{accomodation.Name}}</span>
+        <br/>
+        <span style="font-family:'Times New Roman'; color:gray;"><strong>{{accomodation.Address}}</strong></span>
+      </agm-info-window>>
+
+    </agm-marker>
+<agm-marker *ngIf="adding==true" [latitude]="latitudeOnClick" [longitude]="longitudeOnClick">
+      <!-- Svakom markeru dodajemo info-window (Nije obavezno!)-->
+      
+      <agm-info-window [latitude]="latitudeOnClick" [longitude]="longitudeOnClick" >
+                <span style="color:gray;">Latitude: {{latitudeOnClick}}</span>
+                  <br/>
+                <span style="color:gray;">Longitude: {{longitudeOnClick}}</span>
+      </agm-info-window>
+
+    </agm-marker>
+  </agm-map>
+  <div *ngIf="adding==true" class="center" style="margin-top: 10px">
+        <button md-raised-button type="submit" color="primary" [disabled]="latitudeOnClick==undefined" (click)="setLocation()">Set</button>
+  </div>

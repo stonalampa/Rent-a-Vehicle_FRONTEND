@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Edit</h1>
+  <form type="form" #f="ngForm" (ngSubmit)="f.form.valid && editPlace(f.value,f)"  novalidate>
+      <div>
+          <label for="name">Name:</label>
+          <input type="text" name="Name" [(ngModel)]="ePlace.Name" #Name="ngModel" required />
+          <div *ngIf="f.submitted && !Name.valid">Name is required</div>
+      </div>
+      <div>
+        <label for="region">Region:</label>
+        <select  [(ngModel)]="ePlace.Region_Id" name="Region_Id" #Region="ngModel" required>
+            <option *ngFor="let region of regions" [value]="region.Id">
+                {{region.Name}}
+            </option>
+        </select>
+        <div *ngIf="f.submitted && !Region.valid">Region is required</div>
+      </div>
+        <button type="submit">Save</button>
+  </form>
+</div>
+

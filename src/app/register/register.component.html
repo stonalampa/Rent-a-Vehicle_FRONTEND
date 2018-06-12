@@ -1,0 +1,38 @@
+<div class="container">
+  <h1 md-dialog-title>Register</h1>
+  <form type="form" #f="ngForm" (ngSubmit)="f.form.valid && registerUser(f.value,f)"  novalidate>
+      <div>
+          <md-input-container>
+          <input mdInput type="text" placeholder="Username" name="Username" [(ngModel)]="nUser.Username" #Username="ngModel" required />
+          </md-input-container>
+          <div *ngIf="f.submitted && !Username.valid">Username is required</div>
+      </div>
+      <div>
+          <md-input-container>
+          <input mdInput type="password" placeholder="Password" name="Password" [(ngModel)]="nUser.Password" #Password="ngModel" required />
+          </md-input-container>
+          <div *ngIf="f.submitted && !Password.valid">Password is required</div>
+      </div>
+      <div>
+          <md-input-container>
+          <input mdInput type="password" placeholder="Confirm Password" name="ConfirmPassword" [(ngModel)]="nUser.ConfirmPassword" #ConfirmPassword="ngModel" required />
+          </md-input-container>
+          <div *ngIf="f.submitted && !ConfirmPassword.valid">Confirm Password is required</div>
+      </div>
+      <div>
+          <md-input-container>
+          <input  mdInput type="email" placeholder="Email" name="Email" [(ngModel)]="nUser.Email" #Email="ngModel" required />
+          </md-input-container>
+          <div *ngIf="f.submitted && !Email.valid">Email is required</div>
+      </div>
+      <div>
+        <md-select style="margin: 15px;" ngModel name="Role" #role="ngModel" placeholder="Role" required>
+            <md-option value="AppUser">User</md-option>
+            <md-option value="Manager">Manager</md-option>
+        </md-select>
+        <div *ngIf="f.submitted && !role.valid">Role is required</div>
+      </div>
+        <button md-raised-button color="primary" type="submit">Register</button>
+  </form>
+</div>
+
