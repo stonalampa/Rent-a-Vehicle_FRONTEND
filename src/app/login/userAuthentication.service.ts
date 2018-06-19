@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core"
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import {AppUrl} from "app/appservice/AppUrl.services";
+import {AppUrl} from "../appservice/AppUrl.services"
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -25,6 +25,7 @@ export class HttpAuthenticationService{
         headers.append('Authorization', 'Bearer ' + localStorage.getItem('id_token'));
         const opts: RequestOptions = new RequestOptions();
         opts.headers = headers;
+        localStorage.clear();
 
         return this.http.post(this.appUrl.RootLocation + 'Account/Logout', null,opts);
     }

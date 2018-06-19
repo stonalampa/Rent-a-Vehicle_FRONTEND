@@ -1,7 +1,6 @@
 import { Component, OnInit,Output,EventEmitter } from '@angular/core';
-import { HttpAuthenticationService } from 'app/login/userAuthentication.service'
-import { FormsModule, NgForm } from '@angular/forms';
-import { Http, Headers, Response } from '@angular/http';
+import { HttpAuthenticationService } from '../login/userAuthentication.service'
+import {  NgForm } from '@angular/forms';
 import { MdDialogRef } from '@angular/material';
 
 @Component({

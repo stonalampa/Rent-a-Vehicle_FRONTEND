@@ -1,0 +1,46 @@
+<div class="addDialog">
+  <h1 md-dialog-title>Add Branch</h1>
+  <form type="form" #f="ngForm" (ngSubmit)="f.form.valid && saveAccommodation(f.value,f)"  novalidate>
+      <div>
+          <md-input-container>
+          <input  mdInput placeholder="Address" type="text" name="Address" [(ngModel)]="nBranch.Address" #address="ngModel" required />
+          </md-input-container>
+          <div *ngIf="f.submitted && !Description.valid">Description is required</div>
+      </div>
+      <div>
+         <md-input-container>
+          <input mdInput type="text" placeholder="Longitude" name="Longitude" [(ngModel)]="nBranch.Longitude" #Longitude="ngModel" required />
+         </md-input-container>
+          <div *ngIf="f.submitted && !Email.valid">Longitude is required</div>
+      </div>
+      <div>
+        <md-input-container>
+         <input mdInput type="text" placeholder="Latitude" name="Latitude" [(ngModel)]="nBranch.Latitude" #Latitude="ngModel" required />
+        </md-input-container>
+         <div *ngIf="f.submitted && !Latitude.valid">Email is required</div>
+     </div>
+     <div>
+      <button type="button" md-raised-button color="primary" (click)="openMapAdd()">Set location</button>
+     </div>
+      <div>
+         <md-input-container>
+          <input mdInput type="text" [readonly] = "true" placeholder="Logo" name="Logo" [(ngModel)]="nBranch.Logo" #Logo="ngModel" required />
+         </md-input-container>
+          <div *ngIf="f.submitted && !Logo.valid">Logo is required</div>
+      </div>
+      <div>
+            <button type="button" style="margin: 15px;" md-raised-button color="primary" (click)="openChooseImagesDialog()">Choose Image</button>
+      </div>
+      <div>
+        <md-select style="margin: 15px;" [(ngModel)]="nBranch.Service_Id" name="Service_Id"  #Service_Id="ngModel" 
+        placeholder="Service" required>
+            <md-option *ngFor="let service of services" [value]="service.Id">
+                {{service.Name}}
+            </md-option>
+        </md-select>
+        <div *ngIf="f.submitted && !Service_Id.valid">Service_Id is required</div>
+      </div>
+        <button md-raised-button color="primary" type="submit">Save</button>
+  </form>
+</div>
+

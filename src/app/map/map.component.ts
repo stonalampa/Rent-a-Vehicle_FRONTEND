@@ -1,7 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import {MapModel} from './map.model'
 import { MdDialogRef } from '@angular/material';
-import {Accommodation} from "app/accomodation/accommodation.model"
+//import {Accommodation} from "app/accomodation/accommodation.model"
 
 @Component({
   selector: 'app-map',
@@ -14,7 +14,7 @@ export class MapComponent implements OnInit {
 
   latitudeOnClick:number;
   longitudeOnClick:number;
-  public accomodation:Accommodation;
+  //public accomodation:Accommodation;
   public mapInfo: MapModel;
   public watching:boolean;
   public adding:boolean;

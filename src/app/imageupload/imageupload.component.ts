@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FileUploader} from "ng2-file-upload";
-import {AppUrl} from "app/appservice/AppUrl.services"
-import {Accommodation} from "app/accomodation/accommodation.model"
+import {AppUrl} from "../appservice/AppUrl.services"
+import {Service} from "../service/service.model"
 import{MdSnackBar} from '@angular/material'
+import { Branch } from '../branch/branch.model';
+import { Vehicle } from '../vehicle/vehicle.model';
 
 @Component({
   selector: 'app-imageupload',
@@ -11,7 +13,9 @@ import{MdSnackBar} from '@angular/material'
 })
 export class ImageuploadComponent implements OnInit {
 
-  public accommodation:Accommodation;
+  public service:Service;
+  public branch : Branch;
+  public vehicle : Vehicle;
   public uploader:FileUploader;
   public hasBaseDropZoneOver:boolean = false;
   private token:string;
@@ -23,14 +27,25 @@ export class ImageuploadComponent implements OnInit {
 
   ngOnInit() {
     this.fileChoosed=false;
-    this.uploader=new FileUploader({url:this.appUrl.RootLocation+"acc/image/upload"});
+    this.uploader=new FileUploader({url:this.appUrl.RootLocation+"service/image/upload"});
     this.token=localStorage.getItem("id_token");
     this.uploader.authToken=this.token;
     this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; this.fileChoosed=true; };
     this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
             console.log(item.file.name);
             console.log(response);
-            this.accommodation.ImageURL=item.file.name;
+            if (this.branch !== undefined)
+            {
+              this.branch.Logo=item.file.name;
+            }
+           else if (this.service !== undefined)
+            {
+              this.service.Logo=item.file.name;
+            }
+            else if (this.vehicle !== undefined)
+            {
+              this.vehicle.Image=item.file.name;
+            }
             this.snackBar.open(response, "", {
                                 duration: 2000,
     });

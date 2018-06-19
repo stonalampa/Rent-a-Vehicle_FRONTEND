@@ -1,13 +1,12 @@
-import { Component,OnInit,Input,NgZone } from '@angular/core';
-import { HttpAuthenticationService } from 'app/login/userAuthentication.service';
+import { Component,OnInit,Input } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { MdDialog,MdSnackBar } from '@angular/material';
-import {LoginComponent} from "app/login/login.component"
-import {RegisterComponent} from "app/register/register.component"
 import {Router, ActivatedRoute} from '@angular/router';
-import { NotificationService } from './appservice/notification.service';
-import {AppUrl} from "app/appservice/AppUrl.services"
-
+import {LoginComponent} from "./login/login.component";
+import { RegisterComponent } from './register/register.component';
+import {AppUrl} from "./appservice/AppUrl.services"
+import { HttpAuthenticationService } from './login/userAuthentication.service';
+import {MdDialogConfig} from '@angular/material';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -25,10 +24,8 @@ export class AppComponent {
   private appUser:boolean;
   public static adminR:boolean;
   public static managerR: boolean;
-  zone: NgZone;
 
   constructor(private httpAuthService:HttpAuthenticationService,public dialog: MdDialog,private router:Router,
-             private notificationService: NotificationService,
              public snackBar: MdSnackBar,
               private appUrl:AppUrl){
      }
@@ -39,12 +36,7 @@ export class AppComponent {
       this.managerRole=false;
       this.createPermision();
       this.checkForUser();
-       if (this.role == "Admin") {
-            this.notificationService.adminNotReceived.subscribe(e => this.notify(e));
-        } else if (this.role == "Manager") {
-            this.notificationService.managerNotRecieved.subscribe(e => this.notify(e));
-        }
-        this.zone = new NgZone({ enableLongStackTrace: false });
+       
   }
 
   createPermision(){
@@ -74,7 +66,11 @@ export class AppComponent {
     }
 
     openRegistrationDialog() {
-        let dialogRef = this.dialog.open(RegisterComponent);
+        let config = new MdDialogConfig();
+        config.height='530px';
+        config.width='350px';
+        let dialogRef = this.dialog.open(RegisterComponent,config);
+        
         dialogRef.afterClosed().subscribe((result) => {
             if (result == undefined)
                 return;
@@ -103,30 +99,10 @@ export class AppComponent {
               AppComponent.adminR = false;
               AppComponent.managerR = false;
               this.ngOnInit();
-              this.router.navigate(['/home']);
+              this.router.navigate(['/vehicle']);
           },
           error=>{console.log(error); alert("Logout failed!");}
       );
-  }
-  notify(data: any) {
-        this.zone.run(() => {
-            if (this.role == "Admin")
-             {
-               //this.openSnackBar("You have "+ data +" accommodation(s) for approve","");
-               this.snackBar.open("You have "+ data +" accommodation(s) for approve", "", { duration: 2500,});
-            } else if(this.role == "Manager")
-            {
-                 //this.openSnackBar("Your accommodation "+ data + " is approved ","");
-                 this.snackBar.open("Your accommodation "+ data + " is approved ", "", { duration: 5000,});
-            }
-        });
-
-    }
-
-    openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 2500,
-    });
   }
 
   routeForLink = [
@@ -136,41 +112,21 @@ export class AppComponent {
 
         },
         {
-            route: ['/country'],
-            label: "Country"
+            route: ['/service'],
+            label: "Service"
         },
         {
-            route: ['/region'],
-            label: "Region"
+            route: ['/branch'],
+            label: "Branch"
         },
         {
-            route: ['/place'],
-            label: "Place"
+            route: ['/vehicle'],
+            label: "Vehicle"
         },
         {
-            route: ['/accomodation'],
-            label: "Accomodation"
+            route: ['/vehicleType'],
+            label: "VehicleType"
         },
-        {
-            route: ['/accomodation-type'],
-            label: "Accomodation Type"
-        },
-        {
-          route: ['/comment'],
-          label: "Comment"
-        },
-        {
-          route: ['/room'],
-          label: "Room"
-        },
-        {
-          route: ['/room-reservation'],
-          label: "RoomReservation"
-        },
-        {
-          route: ['/managers'],
-          label: "Managers"
-        }
     ]
      
 }

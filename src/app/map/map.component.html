@@ -1,5 +1,5 @@
 <!-- Kreiramo mapu -->
-  <agm-map [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" [zoom]="18" (mapClick)="onClick($event)">
+<agm-map [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" [zoom]="18" (mapClick)="onClick($event)">
    
     <!-- Postavljamo markere -->
     <agm-marker *ngIf="watching==true" [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" [title]="mapInfo.title"

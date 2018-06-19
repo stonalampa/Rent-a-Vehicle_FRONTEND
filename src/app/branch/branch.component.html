@@ -1,0 +1,91 @@
+
+<div *ngIf="userUndefined==true || appUser==true ">
+  <div class="example-card-div"  *ngFor="let branch of branches "  >
+   
+      <md-card class="example-card">
+        <md-card-header>
+          <div md-card-avatar class="example-header-image"></div>
+          <md-card-title>{{service.Name}} 
+          </md-card-title>
+        </md-card-header>
+        <img md-card-image src={{branch.Logo}} (click) = "detailsDialog(branch)"/>
+        <md-card-content>
+          <p>
+          Opis: {{branch.Adress}}
+          </p>
+          <p>
+            Longitude: {{branch.Longitude}}
+            </p>
+            <p>
+             Latitude: {{branch.Latitude}}
+              </p>
+        </md-card-content>
+        
+      </md-card>
+    </div>
+  </div>
+
+
+<div *ngIf="managerRole==true">
+<div  class="example-card-div"  *ngFor="let branch of branches "  >
+<md-card  class="example-card">
+<md-card-header>
+  <div md-card-avatar class="example-header-image"></div>
+  <md-card-title>{{branch.Name}} </md-card-title>
+</md-card-header>
+<img md-card-image src={{branch.Logo}} (click) = "detailsDialog(branch)"/>
+<md-card-content>
+  <p>
+    Address: {{branch.Address}}
+    </p>
+    <p>
+      Longitude: {{branch.Longitude}}
+      </p>
+      <p>
+        Latitude: {{branch.Latitude}}
+        </p>
+</md-card-content>
+<md-card-actions>
+  <button  md-raised-button color="primary" (click) = "editAccNewDialog(branch)">Edit</button>
+  <button  md-raised-button color="warn" (click) = "delete(branch)">Delete</button>
+</md-card-actions>
+</md-card>
+</div>
+</div>
+
+<div *ngIf="adminRole==true">
+<div  class="example-card-div"  *ngFor="let branch of branches "  >
+<md-card class="example-card">
+<md-card-header>
+  <div md-card-avatar class="example-header-image"></div>
+  <md-card-title>{{branch.Name}} </md-card-title>
+  
+</md-card-header>
+<img md-card-image src={{branch.Logo}} (click) = "detailsDialog(branch)"/>
+<md-card-content>
+  <p>
+    Address: {{branch.Address}}
+    </p>
+    <p>
+      Longitude: {{branch.Longitude}}
+      </p>
+      <p>
+        Latitude: {{branch.Latitude}}
+        </p>
+</md-card-content>
+<md-card-actions>
+  <button  md-raised-button color="primary" (click) = "editAccNewDialog(branch)">Edit</button>
+  <button  md-raised-button color="warn" (click) = "delete(branch)">Delete</button>
+</md-card-actions>
+</md-card>
+</div>
+</div>
+
+
+<span *ngIf="managerRole==true " class="done">
+  <button md-fab  color="primary" (click) = "openAccNewDialog()" >
+  <md-icon>New</md-icon>
+  </button>
+     
+</span>
+

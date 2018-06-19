@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "./user.model"
 import { Http, Response } from '@angular/http';
-import {HttpRegisterService} from "./register.service"
+import {HttpRegisterService} from "./registser.service"
 import { Observable } from "rxjs/Observable";
 import { FormsModule } from '@angular/forms';
 import {NgForm} from '@angular/forms';
-import {AppUrl} from "app/appservice/AppUrl.services"
+import {AppUrl} from "../appservice/AppUrl.services"
 import { MdDialogRef } from '@angular/material';
 import {MdSnackBar} from "@angular/material";
 

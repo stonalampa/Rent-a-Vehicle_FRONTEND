@@ -1,0 +1,34 @@
+<div class="addDialog">
+  <h1 md-dialog-title>Add Service</h1>
+  <form type="form" #f="ngForm" (ngSubmit)="f.form.valid && saveAccommodation(f.value,f)"  novalidate>
+      <div>
+          <md-input-container>
+          <input mdInput type="text" placeholder="Name" name="Name" [(ngModel)]="nService.Name" #Name="ngModel" required />
+          </md-input-container>
+          <div *ngIf="f.submitted && !Name.valid">Name is required</div>
+      </div>
+      <div>
+          <md-input-container>
+          <input  mdInput placeholder="Description" type="text" name="Description" [(ngModel)]="nService.Description" #Description="ngModel" required />
+          </md-input-container>
+          <div *ngIf="f.submitted && !Description.valid">Description is required</div>
+      </div>
+      <div>
+         <md-input-container>
+          <input mdInput type="text" placeholder="Email" name="Email" [(ngModel)]="nService.Email" #Email="ngModel" required />
+         </md-input-container>
+          <div *ngIf="f.submitted && !Email.valid">Email is required</div>
+      </div>
+      <div>
+         <md-input-container>
+          <input mdInput type="text" [readonly] = "true" placeholder="Logo" name="Logo" [(ngModel)]="nService.Logo" #Logo="ngModel" required />
+         </md-input-container>
+          <div *ngIf="f.submitted && !Logo.valid">Logo is required</div>
+      </div>
+      <div>
+            <button type="button" style="margin: 15px;" md-raised-button color="primary" (click)="openChooseImagesDialog()">Choose Image</button>
+      </div>
+        <button md-raised-button color="primary" type="submit">Save</button>
+  </form>
+</div>
+

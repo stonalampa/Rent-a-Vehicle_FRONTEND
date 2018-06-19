@@ -6,6 +6,6 @@ export class AppUrl{
     public RootLocation: string
 
     constructor(){
-        this.RootLocation = "http://localhost:54042/";
+        this.RootLocation = "http://localhost:51680/";
     }
 }

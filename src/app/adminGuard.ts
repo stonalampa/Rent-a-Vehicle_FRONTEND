@@ -15,7 +15,6 @@ export class AdminGuard implements CanActivate{
         if(this.role=="Admin"){
             return true;
         }
-        
         return false;
     }
 }

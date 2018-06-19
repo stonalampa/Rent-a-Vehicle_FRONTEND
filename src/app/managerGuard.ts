@@ -15,7 +15,6 @@ export class ManagerGuard implements CanActivate{
         if(this.role=="Manager"){
             return true;
         }
-        
         return false;
     }
 }

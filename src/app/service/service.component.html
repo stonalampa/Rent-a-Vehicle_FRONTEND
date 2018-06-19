@@ -1,0 +1,82 @@
+
+<div *ngIf="userUndefined==true || appUser==true ">
+    <div class="example-card-div"  *ngFor="let service of services "  >
+     
+        <md-card class="example-card">
+          <md-card-header>
+            <div md-card-avatar class="example-header-image"></div>
+            <md-card-title>{{service.Name}} 
+            </md-card-title>
+          </md-card-header>
+          <img md-card-image src={{service.Logo}} (click) = "detailsDialog(service)"/>
+          <md-card-content>
+            <p>
+            Opis: {{service.Description}}
+            </p>
+            <p>
+              Email: {{service.Email}}
+              </p>
+          </md-card-content>
+          
+        </md-card>
+      </div>
+    </div>
+
+
+<div *ngIf="managerRole==true">
+<div  class="example-card-div"  *ngFor="let service of services "  >
+<md-card  class="example-card">
+  <md-card-header>
+    <div md-card-avatar class="example-header-image"></div>
+    <md-card-title>{{service.Name}} </md-card-title>
+  </md-card-header>
+  <img md-card-image src={{service.Logo}} (click) = "detailsDialog(service)"/>
+  <md-card-content>
+    <p>
+    Opis: {{service.Description}}
+    </p>
+    <p>
+      Email: {{service.Email}}
+   </p>
+  </md-card-content>
+  <md-card-actions>
+    <button  md-raised-button color="primary" (click) = "editAccNewDialog(service)">Edit</button>
+    <button  md-raised-button color="warn" (click) = "delete(service)">Delete</button>
+  </md-card-actions>
+</md-card>
+</div>
+</div>
+
+<div *ngIf="adminRole==true">
+<div  class="example-card-div"  *ngFor="let service of services "  >
+<md-card class="example-card">
+  <md-card-header>
+    <div md-card-avatar class="example-header-image"></div>
+    <md-card-title>{{service.Name}} </md-card-title>
+    
+  </md-card-header>
+  <img md-card-image src={{service.Logo}} (click) = "detailsDialog(service)"/>
+  <md-card-content>
+    <p>
+    Opis: {{service.Description}}
+    </p>
+    <p>
+      Email: {{service.Email}}
+    </p>
+  </md-card-content>
+  <md-card-actions>
+    <button  md-raised-button color="primary" (click) = "editAccNewDialog(service)">Edit</button>
+    <button  md-raised-button color="warn" (click) = "delete(service)">Delete</button>
+  </md-card-actions>
+</md-card>
+</div>
+</div>
+
+
+<span *ngIf="managerRole==true " class="done">
+    <button md-fab  color="primary" (click) = "openAccNewDialog()" >
+    <md-icon>New</md-icon>
+    </button>
+       
+</span>
+

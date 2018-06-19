@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>Add Vehicle Type</h1>
+    <form type="form" #f="ngForm" (ngSubmit)="f.form.valid && saveVehicle(f.value,f)"  novalidate>
+            <div>
+                    <input type="hidden" name="Id" [(ngModel)]="nVehicleType.Id" #name="ngModel"/>
+                </div>
+        <div>
+            <md-input-container>
+            <input mdInput type="text" placeholder="Name" name="Name" [(ngModel)]="nVehicleType.Name" #Name="ngModel" required />
+            </md-input-container>
+            <div *ngIf="f.submitted && !Name.valid">Name is required</div>
+        </div>
+          <button md-raised-button color="primary" type="submit">Save</button>
+    </form>
+  </div>
+  

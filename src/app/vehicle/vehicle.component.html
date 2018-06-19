@@ -1,3 +1,65 @@
-<p>
-  vehicle works!
-</p>
+
+<div *ngIf="userUndefined==true || appUser==true ">
+  <div class="example-card-div"  *ngFor="let vehicle of vehicles "  >
+   
+      <md-card class="example-card">
+        <md-card-header>
+          <div md-card-avatar class="example-header-image"></div>
+          <md-card-title>  Manufactor: {{vehicle.Manufactor}}  </md-card-title>
+              <md-card-subtitle><a class='kinda-link' >Model: {{vehicle.CarModel}} </a> 
+              </md-card-subtitle>
+        </md-card-header>
+        <img md-card-image src={{vehicle.Image}} (click) = "detailsDialog(vehicle)"/>
+        <md-card-content>
+          <p>
+              Year: {{vehicle.Year}}
+         </p>
+          <p>
+              Description: {{vehicle.Description}}
+         </p>
+         <p>
+              Price per hour: {{vehicle.PricePerHour}}
+         </p>
+        </md-card-content>
+      </md-card>
+    </div>
+  </div>
+
+
+<div *ngIf="managerRole==true || adminRole == true">
+<div  class="example-card-div"  *ngFor="let vehicle of vehicles "  >
+  <md-card class="example-card">
+    <md-card-header>
+      <div md-card-avatar class="example-header-image"></div>
+      <md-card-title>  Manufactor: {{vehicle.Manufactor}}  </md-card-title>
+          <md-card-subtitle><a class='kinda-link' >Model: {{vehicle.CarModel}} </a> 
+          </md-card-subtitle>
+    </md-card-header>
+    <img md-card-image src={{vehicle.Image}} (click) = "detailsDialog(vehicle)"/>
+    <md-card-content>
+      <p>
+          Year: {{vehicle.Year}}
+     </p>
+      <p>
+          Description: {{vehicle.Description}}
+     </p>
+     <p>
+          Price per hour: {{vehicle.PricePerHour}}
+     </p>
+    </md-card-content>
+<md-card-actions>
+  <button  md-raised-button color="primary" (click) = "editAccNewDialog(vehicle)">Edit</button>
+  <button  md-raised-button color="warn" (click) = "delete(vehicle)">Delete</button>
+</md-card-actions>
+</md-card>
+</div>
+</div>
+
+
+<span *ngIf="managerRole==true " class="done">
+  <button md-fab color="primary" (click) = "openAccNewDialog()" >
+  <md-icon>New</md-icon>
+  </button>
+     
+</span>
+

@@ -1,0 +1,24 @@
+<table id="customers"  class="mat-elevation-z8">
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th *ngIf="adminRole==true">Edit</th>
+        <th *ngIf="adminRole==true">Delete</th>
+    </thead>
+    <tr *ngFor="let vehicleType of vehicleTypes">
+        <td>{{vehicleType.Id}}</td>
+        <td>{{vehicleType.Name}}</td>
+        <td *ngIf="adminRole==true"><button   md-raised-button color="primary"  (click)="editClickDialog(vehicleType)">Edit</button></td>
+        <td *ngIf="adminRole==true"><button md-raised-button color="warn"  (click)="delete(vehicleType)">Delete</button></td>
+    </tr>
+    
+</table>
+
+<router-outlet></router-outlet>
+
+<span *ngIf="adminRole==true " class="done">
+    <button md-fab  color="primary" (click) = "openAccNewDialog()" >
+    <md-icon>New</md-icon>
+    </button>
+       
+</span>

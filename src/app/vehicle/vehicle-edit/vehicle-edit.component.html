@@ -1,0 +1,65 @@
+<div class="addDialog">
+  <h1 md-dialog-title>Edit Vehicle</h1>
+  <form type="form" #f="ngForm" (ngSubmit)="f.form.valid && editVehicle(f.value,f)"  novalidate>
+      <div>
+          <md-input-container>
+          <input mdInput type="text" placeholder="Model" name="CarModel" [(ngModel)]="eVehicle.CarModel" #CarModel="ngModel" required />
+          </md-input-container>
+          <div *ngIf="f.submitted && !CarModel.valid">CarModel is required</div>
+      </div>
+      <div>
+          <md-input-container>
+          <input  mdInput placeholder="Description" type="text" name="Description" [(ngModel)]="eVehicle.Description" #Description="ngModel" required />
+          </md-input-container>
+          <div *ngIf="f.submitted && !Description.valid">Description is required</div>
+      </div>
+      <div>
+         <md-input-container>
+          <input mdInput type="text" placeholder="Manufactor" name="Manufactor" [(ngModel)]="eVehicle.Manufactor" #Manufactor="ngModel" required />
+         </md-input-container>
+          <div *ngIf="f.submitted && !Manufactor.valid">Manufactor is required</div>
+      </div>
+      <div>
+        <md-input-container>
+         <input mdInput type="text" placeholder="Year" name="Year" [(ngModel)]="eVehicle.Year" #Year="ngModel" required />
+        </md-input-container>
+         <div *ngIf="f.submitted && !Year.valid">Year is required</div>
+     </div>
+     <div>
+      <md-input-container>
+       <input mdInput type="text" placeholder="PricePerHour" name="PricePerHour" [(ngModel)]="eVehicle.PricePerHour" #PricePerHour="ngModel" required />
+      </md-input-container>
+       <div *ngIf="f.submitted && !PricePerHour.valid">PricePerHour is required</div>
+   </div>
+      <div>
+         <md-input-container>
+          <input mdInput type="text" [readonly] = "true" placeholder="Image" name="Image" [(ngModel)]="eVehicle.Image" #Image="ngModel" required />
+         </md-input-container>
+          <div *ngIf="f.submitted && !Image.valid">Image is required</div>
+      </div>
+      <div>
+        <button type="button" style="margin: 15px;" md-raised-button color="primary" (click)="openChooseImagesDialog()">Choose Image</button>
+  </div>
+      <div>
+        <md-select style="margin: 15px;" [(ngModel)]="eVehicle.Service_Id" name="Service_Id"  #Service_Id="ngModel" 
+        placeholder="Service" required>
+            <md-option *ngFor="let service of services" [value]="service.Id">
+                {{service.Name}}
+            </md-option>
+        </md-select>
+        <div *ngIf="f.submitted && !Service_Id.valid">Service_Id  is required</div>
+      </div>
+      <div>
+        <md-select style="margin: 15px;" [(ngModel)]="eVehicle.TypeOfVehicle_Id" name="TypeOfVehicle_Id"  #TypeOfVehicle_Id="ngModel" 
+        placeholder="Vehicle type" required>
+            <md-option *ngFor="let typeOfVehicle of typesOfVehicle" [value]="typeOfVehicle.Id">
+                {{typeOfVehicle.Name}}
+            </md-option>
+        </md-select>
+        <div *ngIf="f.submitted && !typeOfVehicle_Id.valid">Vehicle Type is required</div>
+      </div>
+    
+        <button md-raised-button color="primary" type="submit">Save</button>
+  </form>
+</div>
+

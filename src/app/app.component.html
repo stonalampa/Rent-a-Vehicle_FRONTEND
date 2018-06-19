@@ -1,52 +1,38 @@
-<md-toolbar   color="warn">
+<md-toolbar color="cool">
   
-  <span >Booking App</span>
-
-  <span class="example-spacer"></span>
-    <div class="divlog" *ngIf="!isLoggedIn">
-        <button class="example-icon" md-raised-button color="primary" (click)="openLoginDialog()"> Login</button>
-    </div>
-    <div class="divreg" *ngIf="!isLoggedIn">
-        <button class="example-icon" md-raised-button color="primary" (click)="openRegistrationDialog()"> Register</button>
-    </div>
-    <div class="divuser" *ngIf="isLoggedIn">
-        <button md-button title="Edit profile">{{username}}</button>
-    </div>
-    <div class="divlout" *ngIf="isLoggedIn">
-        <button class="example-icon" md-raised-button color="primary" (click)="logout()"> Log Out</button>
-    </div>
-</md-toolbar>
-
-
-    <nav md-tab-nav-bar >
-        <a md-tab-link  [routerLink]="['/home']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">Home</a>
-        <div class="nav_bar" >
-            <a md-tab-link *ngIf="adminRole==true"  [routerLink]="['/country']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">Country</a>
-        </div>
-        <div class="nav_bar">
-            <a md-tab-link *ngIf="adminRole==true" [routerLink]="['/place']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">Place</a>
-        </div>
-        <div class="nav_bar">
-            <a md-tab-link *ngIf="adminRole==true" [routerLink]="['/region']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">Region</a>
-        </div>
-        <div class="nav_bar">
-            <a md-tab-link [routerLink]="['/accomodation']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">Accommodation</a>
-        </div>
-        <div class="nav_bar">
-            <a md-tab-link *ngIf="adminRole==true" [routerLink]="['/accomodation-type']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">Accommodation Type</a>
-        </div>
-        <div class="nav_bar">
-            <a *ngIf="adminRole==true" md-tab-link [routerLink]="['/comment']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">Comment</a>
-        </div>
-        <div class="nav_bar">
-            <a md-tab-link *ngIf="adminRole==true" [routerLink]="['/room']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">Room</a>
-        </div>
-        <div class="nav_bar">
-            <a *ngIf="adminRole==true" md-tab-link [routerLink]="['/room-reservation']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">Room Reservation</a>
-        </div>
-        <div class="nav_bar">
-            <a *ngIf="adminRole==true" md-tab-link [routerLink]="['/managers']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">Managers</a>
-        </div>
-    </nav>
- 
- <router-outlet></router-outlet>
+    <span >Rent a Car</span>
+  
+    <span class="example-spacer"></span>
+      <div class="divlog" *ngIf="!isLoggedIn">
+          <button class="example-icon" md-raised-button color="primary" (click)="openLoginDialog()"> Login</button>
+      </div>
+      <div class="divreg" *ngIf="!isLoggedIn">
+          <button class="example-icon" md-raised-button color="primary" (click)="openRegistrationDialog()"> Register</button>
+      </div>
+      <div class="divuser" *ngIf="isLoggedIn">
+          <button md-button title="Edit profile">{{username}}</button>
+      </div>
+      <div class="divlout" *ngIf="isLoggedIn">
+          <button class="example-icon" md-raised-button color="primary" (click)="logout()"> Log Out</button>
+      </div>
+  </md-toolbar>
+  
+  
+      <nav md-tab-nav-bar  >
+         <!-- <a md-tab-link [routerLink]="['/home']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">Home</a> -->
+          <div class="nav_bar" >
+                <a md-tab-link  *ngIf="adminRole==true || managerRole == true"  [routerLink]="['/service']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">Service</a>
+            </div>
+            <div class="nav_bar">
+                <a md-tab-link *ngIf="adminRole==true || managerRole == true" [routerLink]="['/branch']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">Branch</a>
+            </div>
+            <div class="nav_bar">
+                <a md-tab-link  [routerLink]="['/vehicle']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">Vehicle</a>
+            </div>
+            <div class="nav_bar">
+                    <a md-tab-link *ngIf="adminRole==true || managerRole == true" [routerLink]="['/vehicleType']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">VehicleType</a>
+            </div>
+         
+      </nav>
+   
+   <router-outlet></router-outlet>
